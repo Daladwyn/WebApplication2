@@ -1,0 +1,43 @@
+﻿@using WebApplication2.Models
+@model List<Person>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET EF Workshop</h1>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <b>First Name</b>
+
+            </div>
+            <div class="col-md-4">
+                <b>Last name</b>
+            </div>
+            <div class="col-md-4">
+                <b>Age</b>
+            </div>
+        </div>
+
+        @foreach (Person item in Model)
+        {
+
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.DisplayFor(modelItem => item.FirstName)
+
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(modelItem => item.Age)
+                </div>
+            </div>
+        }
+    </div>
+</div>
