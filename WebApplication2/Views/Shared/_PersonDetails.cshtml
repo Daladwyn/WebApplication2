@@ -1,0 +1,37 @@
+﻿@using WebApplication2.Models
+@model Person
+
+<div class="col-md-6">
+    <dl class="dl-horizontal">
+        <dt>First name</dt>
+        <dd>@Model.FirstName</dd>
+        <dt>Last name</dt>
+        <dd>@Model.LastName</dd>
+        <dt>Age</dt>
+        <dd>@Model.Age</dd>
+
+    </dl>
+</div>
+
+<div class="col-md-6">
+    @foreach (var item in Model.Belongings)
+    {
+
+        <div class="row">
+            <div class="col-md-4">
+                @item.Name
+            </div>
+            <div class="col-md-4">
+                @item.TypeName
+            </div>
+            <div class="col-md-4">
+                @item.Owner.FirstName |
+                @if (item.LentBy != null)
+                {
+                    @item.LentBy.FirstName
+                }
+            </div>
+
+        </div>
+    }
+</div>

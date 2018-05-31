@@ -21,9 +21,21 @@ namespace WebApplication2.Controllers
                 personList = new List<Person>();
                 // add in errormessage to the user that no connection to Db was established.
             }
-                return View(personList);
-        }
+            return View(personList);
 
-        
+        }
+        public ActionResult PersonDetails(int id)
+        {
+            Person person;
+            using (MyItemsDbcontext Db = new MyItemsDbcontext())
+            {
+                person = Db.People.Include("Belongings").Include("Belongings.LentBy").SingleOrDefault(p => p.Id == id);
+            }
+            if (person == null)
+            {
+                return new HttpStatusCodeResult(404);
+            }
+            return PartialView("_PersonDetails",person);
+        }
     }
 }
